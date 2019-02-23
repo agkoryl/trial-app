@@ -1,12 +1,24 @@
 import React from 'react';
 
 const containerStyles = {
-    fontSize: 40,
-    padding: 20
+    width: '100%',
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center'
+}
+
+const usersStyles = {
+    fontSize: 20,
+    padding: 20,
+    backgroundColor: '#2E86AB',
+    width: '40%'
 }
 
 const userStyles = {
     margin: 15,
+    border: "1px solid black",
+    padding: 15,
+    backgroundColor: '#F5F749'
 }
 
 
@@ -31,11 +43,14 @@ class Users extends React.Component {
     render() {
         return (
             <div style={containerStyles}>
+  <div style={usersStyles}>
                 {this.state.users.results.map(function (user) {
-                    return <div style={userStyles}>{user.name.first} {user.name.last}</div>
+                    return <div style={userStyles} >{user.name.first} {user.name.last}</div>
                 })}
             </div>
-        )
+            </div>
+        )   
+          
     }
 }
 
