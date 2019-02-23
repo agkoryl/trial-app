@@ -1,30 +1,38 @@
 import React from 'react';
 
-const styles = {
+const containerStyles = {
     fontSize: 40,
     padding: 20
+}
+
+const userStyles = {
+    margin: 15,
 }
 
 
 class Users extends React.Component {
 
-    users = [
-        {
-            name: 'John',
-            surname: 'Ble'
-        },
-        {
-            name: 'Jane',
-            surname: 'Yellow'
-        }
-    ]
-        ;
+    state = {
+        users: {results: []}
+    }
+
+    fetchUsers() {
+        fetch('https://randomuser.me/api/?results=10')
+        .then(response => response.json())
+        .then(data => {
+            this.setState({users: data})
+        })
+    }
  
+    componentDidMount() {
+       this.fetchUsers();
+      }
+
     render() {
         return (
-            <div style={styles}>
-                {this.users.map(function (user) {
-                    return <div>{user.name} {user.surname}</div>
+            <div style={containerStyles}>
+                {this.state.users.results.map(function (user) {
+                    return <div style={userStyles}>{user.name.first} {user.name.last}</div>
                 })}
             </div>
         )
@@ -33,3 +41,4 @@ class Users extends React.Component {
 
 
 export default Users;
+
