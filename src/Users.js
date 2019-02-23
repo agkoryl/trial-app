@@ -11,7 +11,8 @@ const usersStyles = {
     fontSize: 20,
     padding: 20,
     backgroundColor: '#2E86AB',
-    width: '40%'
+    width: '40%',
+    overflowY: 'scroll'
 }
 
 const userStyles = {
@@ -22,35 +23,37 @@ const userStyles = {
 }
 
 
+
+
 class Users extends React.Component {
 
     state = {
-        users: {results: []}
+        users: { results: [] }
     }
 
     fetchUsers() {
-        fetch('https://randomuser.me/api/?results=10')
-        .then(response => response.json())
-        .then(data => {
-            this.setState({users: data})
-        })
+        fetch('https://randomuser.me/api/?results=60')
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ users: data })
+            })
     }
- 
+
     componentDidMount() {
-       this.fetchUsers();
-      }
+        this.fetchUsers();
+    }
 
     render() {
         return (
             <div style={containerStyles}>
-  <div style={usersStyles}>
-                {this.state.users.results.map(function (user) {
-                    return <div style={userStyles} >{user.name.first} {user.name.last}</div>
-                })}
+                <div style={usersStyles}>
+                    {this.state.users.results.map(function (user) {
+                        return <div style={userStyles} >{user.name.first} {user.name.last}</div>
+                    })}
+                </div>
             </div>
-            </div>
-        )   
-          
+        )
+
     }
 }
 
