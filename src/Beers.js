@@ -5,12 +5,14 @@ const containerStyles = {
     width: '100%',
     height: '100vh',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center'
 }
 
 const usersStyles = {
     fontSize: 20,
-    padding: 20,
+    padding: 10,
     width: '40%',
     overflowY: 'scroll'
 }
@@ -57,6 +59,20 @@ const linkStyle = {
 
 const pStyle = {
     fontSize: "12px"
+}
+
+const addStyle = {
+    margin: "15px",
+    textDecoration: "none"
+}
+
+const addButton = {
+    fontSize: "30px",
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: '#90BE6D',
+    border: "none",
+    color: "white"
 }
 
 
@@ -107,6 +123,7 @@ class Beers extends React.Component {
     render() {
         return (
             <div style={containerStyles}>
+             <Link to="/create" style={addStyle}><button style={addButton}>Add a new beer</button></Link>
                 <div style={usersStyles}>
                     {this.state.beers.map((beer) => {
                         return <div style={userBox}>
